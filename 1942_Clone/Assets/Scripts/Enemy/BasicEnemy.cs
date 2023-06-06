@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BasicEnemy : Enemy
 {
-   
-    public float maxHealth = 100f;
+
+    public float maxHealth = 100f; //+ ekstraHealth;
     private float currentHealth;
 
     private void Start()
@@ -29,7 +29,7 @@ public class BasicEnemy : Enemy
     {
         // Implement the logic for enemy death, such as destroying the GameObject or playing death animations
         Debug.Log("BasicEnemy has been defeated.");
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
 
     }

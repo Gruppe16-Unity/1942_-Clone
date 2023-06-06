@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : DamageAble
+public class Enemy : MonoBehaviour, DamageAble
 {
-    
+    public float exstraHealth;
     public virtual void TakeDamage(float damage)
     {
         // Implement general damage logic for all enemy types
