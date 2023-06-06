@@ -4,38 +4,34 @@ using UnityEngine;
 
 public class BasicEnemy : Enemy
 {
-    // random som velger mellom de ulike type basicenemy som blir gitt ved gameobject basicenemyspawn = valg basicenemy
-    // kan også klassefisere ulike flystiller ved bruk av prefab som har andre stats 
-    private float green = 0.33f;
-    private float blue = 0.66f;
+   
+    public float maxHealth = 100f;
+    private float currentHealth;
 
-
-
-    public GameObject greenEnemy;
-    public GameObject redEnemy;
-    public GameObject blueEnemy;
-
-
-    public GameObject BasicEnemyType()
+    private void Start()
     {
-        float spawnResult = UnityEngine.Random.Range(0f, 1f);
+        currentHealth = maxHealth;
+    }
 
-        if (spawnResult <= green)
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage); // Call the base method for general damage logic
+
+        currentHealth -= damage; // Reduce the current health by the damage amount
+        Debug.Log("Health:" + currentHealth);
+        if (currentHealth <= 0f)
         {
-            return greenEnemy;
-        }
-        else if (spawnResult > blue)
-        {
-            return blueEnemy;
-        }
-        else
-        {
-            
-            return redEnemy;
+            Die(); // If the health is zero or below, call the Die method
         }
     }
 
-    
+    private void Die()
+    {
+        // Implement the logic for enemy death, such as destroying the GameObject or playing death animations
+        Debug.Log("BasicEnemy has been defeated.");
+        Destroy(gameObject);
 
-   
+
+    }
+
 }

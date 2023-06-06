@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     //References
     Rigidbody2D playerRigidbody2D;
-
+  
     void Start()
     {
         playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //InputManagement();
+        
 
         HandleMovement();
 

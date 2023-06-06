@@ -1,21 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : DamageAble
 {
-    // set 
-
-
-    // Start is called before the first frame update
-    void Start()
+    
+    public virtual void TakeDamage(float damage)
     {
-        
+        // Implement general damage logic for all enemy types
+        Debug.Log("Enemy took damage: " + damage);
     }
 
-   protected virtual void OnDestroy()
+
+    private void OnDestroy()
     {
-        //endre på enemy left til level over eller neste boss batle
+        //drop powerups??
     }
 
 }
