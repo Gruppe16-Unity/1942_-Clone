@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
         //InputManagement();
 
         HandleMovement();
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            //fire
+        }
     }
 
     void FixedUpdate()
@@ -82,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 Move = new Vector3(x, y).normalized;
         transform.position += Move * moveSpeed * Time.deltaTime;
     }
+
+
     /*
     void OnMove()
     {
