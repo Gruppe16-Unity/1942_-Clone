@@ -13,7 +13,7 @@ public class DamageDealer : MonoBehaviour
     public GameObject Bulletprefab;
 
 
-    private float ArrowDamage()
+    private float BulletDamage()
     {
         float damage = CalculateDamage();
 
@@ -40,7 +40,7 @@ public class DamageDealer : MonoBehaviour
 
     public void DealDamage(DamageAble target, float damage)
     {
-        target.TakeDamage(damage);
+        //target.TakeDamage(damage);
     }
 
 
@@ -58,7 +58,7 @@ public class DamageDealer : MonoBehaviour
                 Debug.Log("Critical Hit!");
             }
 
-            attackable.TakeDamage(damage);
+            //attackable.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

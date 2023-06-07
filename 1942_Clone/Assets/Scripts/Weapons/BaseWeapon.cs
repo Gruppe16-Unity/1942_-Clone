@@ -9,11 +9,12 @@ public class BaseWeapon : MonoBehaviour
     public float damage, speed;
     protected PlayerMovement pm;
     Collider2D bulletCollider;
+    private AudioSource blast;
 
     // Start is called before the first frame update
     void Start()
     {
-        bulletCollider = GetComponent<Collider2D>();
+        blast = GetComponent<AudioSource>();
         pm = FindObjectOfType<PlayerMovement>();
     }
 
@@ -23,13 +24,10 @@ public class BaseWeapon : MonoBehaviour
     if (Input.GetMouseButtonDown(0)) 
         {
             Shoot();
-            bulletCollider.enabled = true;
+        
+            
 
         }
-       
-        
-
-
         
     }
 
@@ -38,14 +36,14 @@ public class BaseWeapon : MonoBehaviour
     void Shoot() 
     {
         //Shooting Logic
-
         Instantiate(BulletPrefab, pm.transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
-    
+        blast.Play();
+
     }
 
     public void StopShoot()
     {
-        bulletCollider.enabled = false;
+    
 
     }
 }
