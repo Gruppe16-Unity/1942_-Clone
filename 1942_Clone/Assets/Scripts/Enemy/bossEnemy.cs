@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class bossEnemy : Enemy
 {
+    private Rigidbody2D rb;
+    public GameObject BulletPrefab;
     public float maxHealth = 100f;
     private float currentHealth;
+    public float moveSpeed = 4f;
+    private float minX = -9f;
+    private float maxX = 10f;
+    private float nextShootTime;  // Time for the next shoot
+    private float shootInterval;  // Random shoot interval between 1 and 3 seconds
 
     private void Start()
     {
         currentHealth = maxHealth;
+         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        rb.velocity = new Vector2(moveSpeed, 0f);
+
+        // Set initial shoot interval
+        SetRandomShootInterval();
     }
 
     public override void TakeDamage(float damage)
@@ -23,6 +36,17 @@ public class bossEnemy : Enemy
             Die(); // If the health is zero or below, call the Die method
         }
     }
+    private void Update()
+    {
+        // Check if it's time to shoot
+        if (Time.time >= nextShootTime)
+        {
+            BossMovement();
+
+            // Set a new random shoot interval
+            SetRandomShootInterval();
+        }
+    }
 
     private void Die()
     {
@@ -32,4 +56,29 @@ public class bossEnemy : Enemy
 
 
     }
+     private void BossMovement()
+    {
+        Vector3 currentPosition = transform.position;
+
+        // Ensure the boss stays within the specified X range
+        if (transform.position.x <= minX)
+        {
+            rb.velocity = new Vector2(moveSpeed, 0f);
+        }
+        else if (transform.position.x >= maxX)
+        {
+            rb.velocity = new Vector2(-moveSpeed, 0f);
+        }
+
+        Instantiate(BulletPrefab, transform.position + new Vector3(0f, -2, 0f), Quaternion.identity);
+    }
+
+    private void SetRandomShootInterval()
+    {
+        // Generate a random shoot interval between 1 and 3 seconds
+        shootInterval = Random.Range(1f, 3f);
+        nextShootTime = Time.time + shootInterval;
+    }
 }
+
+

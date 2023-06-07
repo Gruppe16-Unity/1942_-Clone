@@ -7,15 +7,12 @@ public class BaseWeapon : MonoBehaviour
     public Transform firepoint;
     public GameObject BulletPrefab;
     public float damage, speed;
-    protected Player pm;
-    Collider2D bulletCollider;
     private AudioSource blast;
 
     // Start is called before the first frame update
     void Start()
     {
         blast = GetComponent<AudioSource>();
-        pm = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame

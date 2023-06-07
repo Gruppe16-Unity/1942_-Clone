@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         AudioClip Bullet_Hit = audioClips[1];
     }
 
-    private void OnTriggerEnter2D(Collider2D hitInfo)
+    protected virtual void OnTriggerEnter2D(Collider2D hitInfo)
     {
         //Print name of the object it hits.
         Debug.Log(hitInfo.name);

@@ -18,7 +18,7 @@ public class BasicEnemy : MonoBehaviour, DamageAble
         player = FindObjectOfType<Player>().transform;
         weapon = GetComponent<BaseWeapon>();
 
-        StartCoroutine(AttackCoroutine());
+      //  StartCoroutine(AttackCoroutine());
     }
 
     public void TakeDamage(float damage)
