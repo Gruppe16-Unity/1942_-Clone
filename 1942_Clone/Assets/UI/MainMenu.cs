@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         // Hide all menu overlays at the start
+
         ShowMainMenuOverlay();
     }
 
