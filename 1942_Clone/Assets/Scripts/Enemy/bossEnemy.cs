@@ -28,7 +28,7 @@ public class bossEnemy : Enemy
     {
         // Implement the logic for enemy death, such as destroying the GameObject or playing death animations
         Debug.Log("BasicEnemy has been defeated.");
-        //Destroy(gameObject);
+        Destroy(gameObject);
 
 
     }

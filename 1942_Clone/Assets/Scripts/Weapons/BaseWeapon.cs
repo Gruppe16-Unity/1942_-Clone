@@ -7,7 +7,7 @@ public class BaseWeapon : MonoBehaviour
     public Transform firepoint;
     public GameObject BulletPrefab;
     public float damage, speed;
-    protected PlayerMovement pm;
+    protected Player pm;
     Collider2D bulletCollider;
     private AudioSource blast;
 
@@ -15,28 +15,29 @@ public class BaseWeapon : MonoBehaviour
     void Start()
     {
         blast = GetComponent<AudioSource>();
-        pm = FindObjectOfType<PlayerMovement>();
+        pm = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+    /*
     if (Input.GetMouseButtonDown(0)) 
         {
-            Shoot();
+            Shoot(pm.transform.position);
         
             
 
         }
-        
+     */   
     }
 
 
 
-    void Shoot() 
+    public void Shoot(Vector3 firePointPosition) 
     {
         //Shooting Logic
-        Instantiate(BulletPrefab, pm.transform.position + new Vector3(0, 1.1f, 0), Quaternion.identity);
+        Instantiate(BulletPrefab, firePointPosition + new Vector3(0, 1.1f, 0), Quaternion.identity);
         blast.Play();
 
     }

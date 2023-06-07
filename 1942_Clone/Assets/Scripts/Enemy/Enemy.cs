@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, DamageAble
 {
     public float exstraHealth;
+    public BaseWeapon weapon;
     public virtual void TakeDamage(float damage)
     {
         // Implement general damage logic for all enemy types

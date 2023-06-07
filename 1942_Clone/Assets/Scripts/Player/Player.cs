@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour //, DamageAble
 {
     public GameObject impactEffect;
+    private BaseWeapon weapon;
 
     //Movement
     public float moveSpeed;
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public float lastVerticalVector;
 
+
+
     //References
     Rigidbody2D playerRigidbody2D;
   
@@ -24,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     {
 
         playerRigidbody2D = GetComponent<Rigidbody2D>();
+        weapon = GetComponent<BaseWeapon>();
+
+
     }
 
     void Update()
@@ -35,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            //fire
+            weapon.Shoot(transform.position);
         }
     }
 
@@ -108,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("CollisionEnter");
         
         //Removes 
-       // Object.Destroy(gameObject);
+        //Object.Destroy(gameObject);
 
         //Impact Effect
         Instantiate(impactEffect, transform.position, transform.rotation);

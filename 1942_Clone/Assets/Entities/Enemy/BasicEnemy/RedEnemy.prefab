@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1788532138856900297}
   - component: {fileID: 8190466109670900031}
   - component: {fileID: 7706944746210556214}
+  - component: {fileID: 6987921409762472273}
   m_Layer: 0
   m_Name: RedEnemy
   m_TagString: Enemy
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7354326717585767667
 SpriteRenderer:
@@ -161,6 +162,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0adf9c7ba457324180cf5db517b9662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exstraHealth: 0
-  maxHealth: 100
-  moveSpeed: 4
+  maxHealth: 10
+  moveSpeed: 5
+  fireRate: 1
+--- !u!114 &6987921409762472273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848029383791934197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20414d3bde0c70408c5e6387a4dada4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firepoint: {fileID: 0}
+  BulletPrefab: {fileID: 7312022534601046639, guid: 6facda4376112b24c903018a3e942457, type: 3}
+  damage: 0
+  speed: 0

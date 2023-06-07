@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class DamageDealer : MonoBehaviour
 {
-    public float minDamage = 3f;
-    public float maxDamage = 5f;
+    public float minDamage = 10f;
+    public float maxDamage = 15f;
     public float criticalChance = 0.2f;
     public float criticalMultiplier = 1.4f;
 
@@ -40,7 +40,7 @@ public class DamageDealer : MonoBehaviour
 
     public void DealDamage(DamageAble target, float damage)
     {
-        //target.TakeDamage(damage);
+        target.TakeDamage(damage);
     }
 
 
@@ -58,7 +58,7 @@ public class DamageDealer : MonoBehaviour
                 Debug.Log("Critical Hit!");
             }
 
-            //attackable.TakeDamage(damage);
+            attackable?.TakeDamage(damage);
             Destroy(gameObject);
         }
     }

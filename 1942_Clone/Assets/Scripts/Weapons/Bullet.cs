@@ -35,10 +35,11 @@ public class Bullet : MonoBehaviour
         // Play Sound on hit
         audioSource.clip = Bullet_Hit;
 
+       
         //Impact Effect
         Instantiate(impactEffect, transform.position, transform.rotation);
         Object.Destroy(gameObject);
-
+        
 
         // ScoreBehaviour.AddScore(); future implementasjon
     }

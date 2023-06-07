@@ -2,44 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : Enemy
+public class BasicEnemy : MonoBehaviour, DamageAble
 {
-    Transform player; 
-    public float maxHealth = 100f; //+ ekstraHealth;
+    [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float fireRate = 10f;
+
     private float currentHealth;
-    public float moveSpeed;
-
-
+    private Transform player;
+    private BaseWeapon weapon;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        player = FindAnyObjectByType<PlayerMovement>().transform;
+        player = FindObjectOfType<Player>().transform;
+        weapon = GetComponent<BaseWeapon>();
+
+        StartCoroutine(AttackCoroutine());
     }
 
-    public override void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
-        base.TakeDamage(damage); // Call the base method for general damage logic
+        currentHealth -= damage;
+        Debug.Log("Health: " + currentHealth);
 
-        currentHealth -= damage; // Reduce the current health by the damage amount
-        Debug.Log("Health:" + currentHealth);
         if (currentHealth <= 0f)
         {
-            Die(); // If the health is zero or below, call the Die method
+            Die();
         }
     }
 
     private void Die()
     {
-        // Implement the logic for enemy death, such as destroying the GameObject or playing death animations
         Debug.Log("BasicEnemy has been defeated.");
-        //Destroy(gameObject);
-
-
+        Destroy(gameObject);
     }
+
+    private IEnumerator AttackCoroutine()
+    {
+        while (true)
+        {
+            weapon.Shoot(transform.position);
+            yield return new WaitForSeconds(fireRate);
+        }
+    }
+
     private void Update()
     {
-        //Constantly move Basic Enemies towards players
-       transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
     }
 }
