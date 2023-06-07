@@ -1,38 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class TilemapGenerator : MonoBehaviour
+public class IslandGenerator : MonoBehaviour
 {
-    public Tilemap tilemap;
-    public RuleTile islandRuleTile;
-    public TileBase oceanTile;
-    public int mapWidth = 10;
-    public int mapHeight = 10;
-    public int islandCount = 5;
+    public GameObject[] islandPrefabs; // Array of island prefabs to choose from
+    public float spawnInterval = 2f; // Interval between island spawns
+    public float scrollSpeed = 1f; // Speed at which islands scroll down
+    public float spawnSpread = 4f; // Maximum spread range for island spawns
+
+    private List<GameObject> spawnedIslands = new List<GameObject>(); // List to keep track of spawned islands
+    private SpriteRenderer backgroundRenderer; // Reference to the background sprite renderer
+    private Camera mainCamera; // Reference to the main camera
 
     private void Start()
     {
-        GenerateTilemap();
+        backgroundRenderer = GetComponent<SpriteRenderer>();
+        mainCamera = Camera.main;
+
+        // Set the background color to match the tile-set's blue color
+        if (backgroundRenderer != null && islandPrefabs.Length > 0)
+        {
+            Sprite sprite = islandPrefabs[0].GetComponent<SpriteRenderer>().sprite;
+            if (sprite != null)
+            {
+                backgroundRenderer.color = sprite.texture.GetPixel(0, 0);
+            }
+        }
+
+        // Start spawning islands
+        StartCoroutine(SpawnIslands());
     }
 
-    private void GenerateTilemap()
+    private IEnumerator SpawnIslands()
     {
-        // Set the entire tilemap to the ocean tile
-        BoundsInt bounds = tilemap.cellBounds;
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-        for (int i = 0; i < allTiles.Length; i++)
+        while (true)
         {
-            allTiles[i] = oceanTile;
-        }
-        tilemap.SetTilesBlock(bounds, allTiles);
+            // Choose a random island prefab from the array
+            GameObject islandPrefab = islandPrefabs[Random.Range(0, islandPrefabs.Length)];
 
-        // Add islands
-        for (int i = 0; i < islandCount; i++)
+            // Calculate a random spawn position outside the camera view
+            Vector3 spawnPosition = GetRandomSpawnPosition();
+
+            // Instantiate the island prefab at the random spawn position
+            GameObject island = Instantiate(islandPrefab, spawnPosition, Quaternion.identity);
+
+            // Animate the island by moving it down the screen
+            StartCoroutine(AnimateIsland(island));
+
+            // Add the island to the list of spawned islands
+            spawnedIslands.Add(island);
+
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        float cameraHeight = 2f * mainCamera.orthographicSize;
+        float spawnX = Random.Range(-spawnSpread, spawnSpread);
+        float spawnY = mainCamera.transform.position.y + (cameraHeight / 2f) + (spawnSpread / 2f);
+        return new Vector3(spawnX, spawnY, transform.position.z);
+    }
+
+    private IEnumerator AnimateIsland(GameObject island)
+    {
+        while (island != null)
         {
-            int x = Random.Range(0, mapWidth);
-            int y = Random.Range(0, mapHeight);
-            Vector3Int tilePosition = new Vector3Int(x, y, 0);
-            tilemap.SetTile(tilePosition, islandRuleTile);
+            // Move the island downwards based on the scroll speed
+            island.transform.position += Vector3.down * scrollSpeed * Time.deltaTime;
+
+            yield return null;
         }
     }
 }
