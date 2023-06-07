@@ -22,9 +22,12 @@ public class WeaponUpgrade : BaseWeapon
 
     }
     override public void Shoot(Vector3 firePointPosition)
-    {
+    {   
+
         //Shooting Logic
         Instantiate(BulletPrefab, firePointPosition + new Vector3(0, 1.1f, 0), Quaternion.identity);
         //blast.Play();
+
+
     }
 }

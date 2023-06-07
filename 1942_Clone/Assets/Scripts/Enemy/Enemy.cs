@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour, DamageAble
     public BaseWeapon weapon;
     public virtual void TakeDamage(float damage)
     {
+        // Play Sound if they get hit.
+        Bullet_Hit.Play();
         // Implement general damage logic for all enemy types
         Debug.Log("Enemy took damage: " + damage);
     }
@@ -37,6 +39,7 @@ public class Enemy : MonoBehaviour, DamageAble
     }
     protected virtual IEnumerator BlinkCharacter()
     {
+
         // Blink the character red for the specified duration
         characterRenderer.color = blinkColor;
         yield return new WaitForSeconds(blinkDuration);
@@ -44,7 +47,6 @@ public class Enemy : MonoBehaviour, DamageAble
         // Change the color back to the original color
         characterRenderer.color = originalColor;
         
-        // Play Sound if they get hit.
-        Bullet_Hit.Play();
+        
     }
 }

@@ -7,6 +7,14 @@ public class Player : MonoBehaviour //, DamageAble
     public GameObject impactEffect;
     private BaseWeapon weapon;
 
+    [HideInInspector]
+    private float CooldownTime = 0, shootCooldown = 0.2f; // Delay between shooting presses
+    [HideInInspector]
+    public float reloadTimer = 2f; // Time to reload
+    [HideInInspector]
+    private int currentAmmo, maxAmmo = 10;
+
+
     //Movement
     public float moveSpeed;
 
@@ -17,8 +25,7 @@ public class Player : MonoBehaviour //, DamageAble
     public float lastHorizontalVector;
     [HideInInspector]
     public float lastVerticalVector;
-
-
+    
 
     //References
     Rigidbody2D playerRigidbody2D;
@@ -28,6 +35,7 @@ public class Player : MonoBehaviour //, DamageAble
 
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         weapon = GetComponent<BaseWeapon>();
+        currentAmmo = maxAmmo;
 
 
     }
@@ -38,12 +46,24 @@ public class Player : MonoBehaviour //, DamageAble
         
 
         HandleMovement();
-
-        if(Input.GetMouseButtonDown(0))
+        CooldownTime -= Time.deltaTime;
+        if (Input.GetMouseButtonDown(0) && CooldownTime <= 0f && currentAmmo > 0)
         {
+            CooldownTime = shootCooldown;
             weapon.Shoot(transform.position);
+            currentAmmo--; // Decrease ammo count
+            reloadTimer = 3f; // Start the reload timer
+        }
+        if (reloadTimer > 0f)
+        {
+            reloadTimer -= Time.deltaTime;
+            if (reloadTimer <= 0f)
+            {
+                Reload();
+            }
         }
     }
+
 
     void FixedUpdate()
     {
@@ -120,4 +140,10 @@ public class Player : MonoBehaviour //, DamageAble
         Instantiate(impactEffect, transform.position, transform.rotation);
 
     }
+
+    public void Reload()
+    {
+        currentAmmo = 10;
+    }
+
 }

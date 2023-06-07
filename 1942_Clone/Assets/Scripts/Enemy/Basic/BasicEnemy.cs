@@ -24,6 +24,7 @@ public class BasicEnemy : Enemy, DamageAble
 
     override public void TakeDamage(float damage)
     {
+        base.TakeDamage(damage);
         currentHealth -= damage;
         Debug.Log("Health: " + currentHealth);
         StartCoroutine(BlinkCharacter());

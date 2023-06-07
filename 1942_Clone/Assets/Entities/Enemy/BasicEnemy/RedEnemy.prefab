@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkDuration: 0.2
   blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  Bullet_Hit: {fileID: 0}
+  Bullet_Hit: {fileID: 6785543856094979114, guid: 3c142fba761479f41b285207dd89e7d3, type: 3}
   exstraHealth: 0
   weapon: {fileID: 0}
   maxHealth: 10

@@ -32,10 +32,6 @@ public class Bullet : MonoBehaviour
         //Removes Bullet on hit.
         Object.Destroy(gameObject);
 
-        // Play Sound on hit
-        audioSource.clip = Bullet_Hit;
-
-       
         //Impact Effect
         Instantiate(impactEffect, transform.position, transform.rotation);
         Object.Destroy(gameObject);
