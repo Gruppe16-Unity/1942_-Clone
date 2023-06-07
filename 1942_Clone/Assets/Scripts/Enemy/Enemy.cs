@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, DamageAble
 {
+    public float blinkDuration = 0.2f; // Duration of each blink
+    public Color blinkColor = Color.red; // Color to blink
+    private SpriteRenderer characterRenderer; // Reference to the character's sprite renderer
+    private Color originalColor; // Original color of the character
+
+    public AudioSource Bullet_Hit;
+
+
     public float exstraHealth;
     public BaseWeapon weapon;
     public virtual void TakeDamage(float damage)
@@ -13,10 +21,30 @@ public class Enemy : MonoBehaviour, DamageAble
         Debug.Log("Enemy took damage: " + damage);
     }
 
+    virtual protected void start() 
+    {
+        Bullet_Hit = GetComponent<AudioSource>();
+        characterRenderer = GetComponent<SpriteRenderer>();
+        originalColor = characterRenderer.color;
+
+
+    }
+
 
     private void OnDestroy()
     {
         //drop powerups??
     }
+    protected virtual IEnumerator BlinkCharacter()
+    {
+        // Blink the character red for the specified duration
+        characterRenderer.color = blinkColor;
+        yield return new WaitForSeconds(blinkDuration);
 
+        // Change the color back to the original color
+        characterRenderer.color = originalColor;
+        
+        // Play Sound if they get hit.
+        Bullet_Hit.Play();
+    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemy : MonoBehaviour, DamageAble
+public class BasicEnemy : Enemy, DamageAble
 {
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private float moveSpeed = 5f;
@@ -10,10 +10,11 @@ public class BasicEnemy : MonoBehaviour, DamageAble
 
     private float currentHealth;
     private Transform player;
-    private BaseWeapon weapon;
+    //private BaseWeapon weapon;
 
     private void Start()
     {
+        base.start();
         currentHealth = maxHealth;
         player = FindObjectOfType<Player>().transform;
         weapon = GetComponent<BaseWeapon>();
@@ -21,11 +22,11 @@ public class BasicEnemy : MonoBehaviour, DamageAble
       //  StartCoroutine(AttackCoroutine());
     }
 
-    public void TakeDamage(float damage)
+    override public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         Debug.Log("Health: " + currentHealth);
-
+        StartCoroutine(BlinkCharacter());
         if (currentHealth <= 0f)
         {
             Die();

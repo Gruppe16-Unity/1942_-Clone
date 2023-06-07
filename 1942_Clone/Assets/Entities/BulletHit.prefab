@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1662489072183080088
+--- !u!1 &4815837072527683767
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7688587214982495885}
-  - component: {fileID: 1235700685345544325}
+  - component: {fileID: 4787547742109015834}
+  - component: {fileID: 6785543856094979114}
   m_Layer: 0
-  m_Name: ThemeLevel_1
+  m_Name: BulletHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7688587214982495885
+--- !u!4 &4787547742109015834
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662489072183080088}
+  m_GameObject: {fileID: 4815837072527683767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -18.105938, y: 9.077572, z: -0.17837974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1235700685345544325
+--- !u!82 &6785543856094979114
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662489072183080088}
+  m_GameObject: {fileID: 4815837072527683767}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6cb2c708da26e404e8e41be9e2ed4a7b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.724
+  m_audioClip: {fileID: 8300000, guid: 938825871b2b864478b3f2ece73c7a93, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 119
+  Priority: 256
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

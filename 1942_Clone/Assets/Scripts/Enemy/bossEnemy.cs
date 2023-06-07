@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class bossEnemy : Enemy
 {
+  
     private Rigidbody2D rb;
     public GameObject BulletPrefab;
     public float maxHealth = 100f;
@@ -14,8 +15,11 @@ public class bossEnemy : Enemy
     private float nextShootTime;  // Time for the next shoot
     private float shootInterval;  // Random shoot interval between 1 and 3 seconds
 
+
+
     private void Start()
     {
+        base.start();
         currentHealth = maxHealth;
          rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
@@ -28,7 +32,7 @@ public class bossEnemy : Enemy
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage); // Call the base method for general damage logic
-
+        StartCoroutine(BlinkCharacter());
         currentHealth -= damage; // Reduce the current health by the damage amount
         Debug.Log("Health:" + currentHealth);
         if (currentHealth <= 0f)
@@ -79,6 +83,8 @@ public class bossEnemy : Enemy
         shootInterval = Random.Range(1f, 3f);
         nextShootTime = Time.time + shootInterval;
     }
+
+
 }
 
 
