@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject impactEffect;
+
     //Movement
     public float moveSpeed;
 
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
   
     void Start()
     {
+
         playerRigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -103,5 +106,12 @@ public class PlayerMovement : MonoBehaviour
         //kall destroyed animasion
         //Destroy(gameObject);
         Debug.Log("CollisionEnter");
+        
+        //Removes 
+       // Object.Destroy(gameObject);
+
+        //Impact Effect
+        Instantiate(impactEffect, transform.position, transform.rotation);
+
     }
 }

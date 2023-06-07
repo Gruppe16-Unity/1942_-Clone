@@ -347,6 +347,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1378819871262056266, guid: 95add76650e90e9498f6303c99d7e1aa, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1937401176448581354, guid: 95add76650e90e9498f6303c99d7e1aa, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -403,6 +407,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8550078300874958564, guid: 95add76650e90e9498f6303c99d7e1aa, type: 3}
+      propertyPath: impactEffect
+      value: 
+      objectReference: {fileID: 8079035402060178988, guid: 955400075362de9458062d9785d8dff2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -453,11 +461,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7688587214982495885, guid: 62034af5e87061043b143d0ff00843f3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -21.4
       objectReference: {fileID: 0}
     - target: {fileID: 7688587214982495885, guid: 62034af5e87061043b143d0ff00843f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 7688587214982495885, guid: 62034af5e87061043b143d0ff00843f3, type: 3}
       propertyPath: m_LocalPosition.z

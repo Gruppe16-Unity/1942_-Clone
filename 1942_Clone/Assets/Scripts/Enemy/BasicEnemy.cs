@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BasicEnemy : Enemy
 {
-
+    Transform player; 
     public float maxHealth = 100f; //+ ekstraHealth;
     private float currentHealth;
+    public float moveSpeed;
+
+
 
     private void Start()
     {
         currentHealth = maxHealth;
+        player = FindAnyObjectByType<PlayerMovement>().transform;
     }
 
     public override void TakeDamage(float damage)
@@ -33,5 +37,9 @@ public class BasicEnemy : Enemy
 
 
     }
-
+    private void Update()
+    {
+        //Constantly move Basic Enemies towards players
+       transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+    }
 }
