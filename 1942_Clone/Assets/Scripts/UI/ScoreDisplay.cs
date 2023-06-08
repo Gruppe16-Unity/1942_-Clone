@@ -15,10 +15,7 @@ public class ScoreDisplay : MonoBehaviour
     private void Update()
     {
         UpdateScoreText();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.Instance.IncreaseScore(10);
-        }
+        
    
     }
 
