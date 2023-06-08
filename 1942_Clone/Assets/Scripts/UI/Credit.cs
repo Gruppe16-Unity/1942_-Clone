@@ -3,32 +3,41 @@ using TMPro;
 
 public class Credit : MonoBehaviour
 {
+    public static Credit CI;
     public TextMeshProUGUI CreditText;
-
-    public int credit;
-
     private void Start()
     {
-        credit = 0;
         UpdateCreditText();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            IncreaseCredit(1);
+            GameManager.Instance.IncreaseCredit(1);
         }
-    }
 
-    public void IncreaseCredit(int amount)
-    {
-        credit += amount;
+
         UpdateCreditText();
     }
 
-    private void UpdateCreditText()
+
+
+    public void UpdateCreditText()
     {
-        CreditText.text = "Credit: " + credit.ToString();
+        CreditText.text = "Credit: " + GameManager.Instance.GetCredit().ToString();
+    }
+
+    private void Awake()
+    {
+        if (CI == null)
+        {
+            CI = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

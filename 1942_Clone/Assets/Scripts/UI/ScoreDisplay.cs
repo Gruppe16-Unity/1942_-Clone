@@ -3,32 +3,43 @@ using TMPro;
 
 public class ScoreDisplay : MonoBehaviour
 {
+    public static ScoreDisplay SD_Instance;
     public TextMeshProUGUI scoreText;
 
-    private int score;
-
+    //References
     private void Start()
     {
-        score = 0;
         UpdateScoreText();
     }
 
     private void Update()
     {
+        UpdateScoreText();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            IncreaseScore(10);
+            GameManager.Instance.IncreaseScore(10);
         }
+   
     }
 
-    public void IncreaseScore(int amount)
+
+    public void UpdateScoreText()
     {
-        score += amount;
-        UpdateScoreText();
+        scoreText.text = "Score: " + GameManager.Instance.GetScore().ToString();
     }
 
-    private void UpdateScoreText()
+
+
+    private void Awake()
     {
-        scoreText.text = "Score: " + score.ToString();
+        if (SD_Instance == null)
+        {
+            SD_Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

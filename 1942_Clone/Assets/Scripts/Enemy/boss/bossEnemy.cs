@@ -38,6 +38,7 @@ public class BossEnemy : Enemy
         if (currentHealth <= 0f)
         {
             GM.EnemyBoss = 0;
+            GameManager.Instance.IncreaseScore(100);
             Die(); // If the health is zero or below, call the Die method
         }
     }

@@ -31,6 +31,7 @@ public class BasicEnemy : Enemy, DamageAble
         StartCoroutine(BlinkCharacter());
         if (currentHealth <= 0f)
         {
+            GameManager.Instance.IncreaseScore(10);
             Die();
         }
     }

@@ -12,17 +12,18 @@ public class MainMenu : MonoBehaviour
 
     //References
     public GameManager GM;
-    protected void Update() 
+    protected void Update()
     {
-      
 
-  
+
+
 
     }
 
 
     public void PlayGame()
     {
+
         // Load the game scene
         SceneManager.LoadScene("Level_1");
         HideAllOverlays();
@@ -30,11 +31,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        //Unloads All Scenes
-        SceneManager.UnloadScene("Level_1");
-        SceneManager.UnloadScene("Level_Boss");
-
-
         GM = FindAnyObjectByType<GameManager>();
         // Hide all menu overlays at the start
         ShowMainMenuOverlay();
@@ -77,4 +73,9 @@ public class MainMenu : MonoBehaviour
         // Quit the application
         Application.Quit();
     }
-}
+
+   
+
+    
+}  
+    
