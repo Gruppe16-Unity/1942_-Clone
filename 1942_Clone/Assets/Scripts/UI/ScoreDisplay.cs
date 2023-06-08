@@ -14,9 +14,7 @@ public class ScoreDisplay : MonoBehaviour
 
     private void Update()
     {
-        UpdateScoreText();
-        
-   
+        UpdateScoreText(); 
     }
 
 
