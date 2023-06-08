@@ -15,19 +15,21 @@ public class BossEnemy : Enemy
     private float nextShootTime;  // Time for the next shoot
     private float shootInterval;  // Random shoot interval between 1 and 3 seconds
 
-
+    protected Transform firePoint;
 
     private void Start()
     {
-        base.start();
+        base.Start();
         currentHealth = maxHealth;
-         rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         rb.velocity = new Vector2(moveSpeed, 0f);
 
         // Set initial shoot interval
+        
         SetRandomShootInterval();
-    }
+        
+}
 
     public override void TakeDamage(float damage)
     {
@@ -38,19 +40,12 @@ public class BossEnemy : Enemy
         if (currentHealth <= 0f)
         {
             GM.EnemyBoss = 0;
-            GameManager.Instance.IncreaseScore(100);
             Die(); // If the health is zero or below, call the Die method
         }
-    }
-    private void Update()
-    {
-        // Check if it's time to shoot
-        if (Time.time >= nextShootTime)
+        firePoint = transform.Find("FirePoint");
+        if (firePoint == null)
         {
-            BossMovement();
-
-            // Set a new random shoot interval
-            SetRandomShootInterval();
+            Debug.LogError("FirePoint not found in enemy's hierarchy!");
         }
     }
 
@@ -65,6 +60,8 @@ public class BossEnemy : Enemy
      private void BossMovement()
     {
         Vector3 currentPosition = transform.position;
+        
+        Shoot();
 
         // Ensure the boss stays within the specified X range
         if (transform.position.x <= minX)
@@ -86,6 +83,10 @@ public class BossEnemy : Enemy
         nextShootTime = Time.time + shootInterval;
     }
 
+    private void Shoot()
+    {
+        FindObjectOfType<BaseWeapon>().EnemyShoot(firePoint, null, 2);
+    }
 
 }
 

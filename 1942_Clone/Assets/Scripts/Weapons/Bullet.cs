@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     AudioSource audioSource;
 
     public float speed = 20f;
+    public float damage = 2f;
     public Rigidbody2D rb;
     public GameObject impactEffect;
 

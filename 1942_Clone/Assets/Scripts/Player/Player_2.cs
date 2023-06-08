@@ -43,6 +43,13 @@ public class Player2 : MonoBehaviour
     Rigidbody2D playerRigidbody2D;
     private Transform player;
 
+    //bool
+    /*   
+    private bool hasExtraBulletPowerUp = false;
+    private bool hasFireRatePowerUp = false;
+    private bool hasReloadSpeedPowerUp = false;
+     */
+
     void Start()
     {
         player = FindObjectOfType<Player2>().transform;
@@ -152,7 +159,7 @@ public class Player2 : MonoBehaviour
        currentAmmo = 10;
    }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("Player has been defeated.");
         Destroy(gameObject);
@@ -176,4 +183,33 @@ public class Player2 : MonoBehaviour
     {
         sharedHP.DecreaseSharedHealth(amount);
     }
+    /* public void ApplyPowerUp(PowerUpType powerUp)
+    {
+        switch (powerUp)
+        {
+            case PowerUpType.ExtraBullet:
+                if (!hasExtraBulletPowerUp)
+                {
+                    weapon.AddExtraBullet();
+                    hasExtraBulletPowerUp = true;
+                }
+                break;
+            case PowerUpType.FireRate:
+                if (!hasFireRatePowerUp)
+                {
+                    weapon.IncreaseFireRate(0.3f);
+                    hasFireRatePowerUp = true;
+                }
+                break;
+            case PowerUpType.ReloadSpeed:
+                if (!hasReloadSpeedPowerUp)
+                {
+                    weapon.DecreaseReloadSpeed(0.2f);
+                    hasReloadSpeedPowerUp = true;
+                }
+                break;
+        }
+    }
+     */ 
+
 }

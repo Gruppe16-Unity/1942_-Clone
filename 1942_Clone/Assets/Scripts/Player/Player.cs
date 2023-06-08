@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, DamageAble
     public Credit getCredit;
 
     [HideInInspector]
-    private float CooldownTime = 0, shootCooldown = 0.2f; // Delay between shooting presses
+    public float CooldownTime = 0, shootCooldown = 0.2f; // Delay between shooting presses
     [HideInInspector]
     public float reloadTimer = 2f; // Time to reload
     [HideInInspector]
@@ -43,6 +43,12 @@ public class Player : MonoBehaviour, DamageAble
     Rigidbody2D playerRigidbody2D;
     private Transform player;
 
+
+    //bool
+    public bool hasExtraBulletPowerUp = false;
+    public bool hasFireRatePowerUp = false;
+    public bool hasReloadSpeedPowerUp = false;
+
     void Start()
     {
         player = FindObjectOfType<Player>().transform;
@@ -68,7 +74,7 @@ public class Player : MonoBehaviour, DamageAble
             if (Input.GetKeyDown(KeyCode.Space) && CooldownTime <= 0f && currentAmmo > 0)
             {
                 CooldownTime = shootCooldown;
-                weapon.Shoot(transform.position);
+                weapon.Shoot();
                 currentAmmo--; // Decrease ammo count
                 reloadTimer = 3f; // Start the reload timer
             }
@@ -149,7 +155,7 @@ public class Player : MonoBehaviour, DamageAble
         currentAmmo = 10;
     }
 
-    private void Die()
+    public void Die()
     {
         Debug.Log("Player has been defeated.");
         Destroy(gameObject);
@@ -172,5 +178,33 @@ public class Player : MonoBehaviour, DamageAble
     public void DecreaseHP(int amount)
     {
         sharedHP.DecreaseSharedHealth(amount);
+    }
+
+    public void ApplyPowerUp(PowerUpType powerUp)
+    {
+        switch (powerUp)
+        {
+            case PowerUpType.ExtraBullet:
+                if (!hasExtraBulletPowerUp)
+                {
+                    weapon.AddExtraBullet();
+                    hasExtraBulletPowerUp = true;
+                }
+                break;
+            case PowerUpType.FireRate:
+                if (!hasFireRatePowerUp)
+                {
+                    weapon.IncreaseFireRate(0.3f);
+                    hasFireRatePowerUp = true;
+                }
+                break;
+            case PowerUpType.ReloadSpeed:
+                if (!hasReloadSpeedPowerUp)
+                {
+                    weapon.DecreaseReloadSpeed(0.2f);
+                    hasReloadSpeedPowerUp = true;
+                }
+                break;
+        }
     }
 }
