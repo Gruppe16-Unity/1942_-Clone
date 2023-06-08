@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         // Load the game scene
-        SceneManager.LoadScene("Level_2");
+        SceneManager.LoadScene("Level_1");
         HideAllOverlays();
     }
 

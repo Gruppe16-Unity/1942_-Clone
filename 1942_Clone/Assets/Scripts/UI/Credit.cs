@@ -5,7 +5,7 @@ public class Credit : MonoBehaviour
 {
     public TextMeshProUGUI CreditText;
 
-    private int credit;
+    public int credit;
 
     private void Start()
     {

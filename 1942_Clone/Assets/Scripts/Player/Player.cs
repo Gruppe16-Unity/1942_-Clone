@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour //, DamageAble
+public class Player : MonoBehaviour, DamageAble
 {
+    //GameObject
     public GameObject impactEffect;
     private BaseWeapon weapon;
+    public HealthBar healthbar;
+    public Credit getCredit;
 
     [HideInInspector]
     private float CooldownTime = 0, shootCooldown = 0.2f; // Delay between shooting presses
@@ -15,8 +18,16 @@ public class Player : MonoBehaviour //, DamageAble
     private int currentAmmo, maxAmmo = 10;
 
 
+    //Health & Credit 
+
+    public float maxHealth; 
+    public float currentHealth;
+
+
+
     //Movement
     public float moveSpeed;
+
 
     [HideInInspector]
     //public Vector2 moveDir;
@@ -36,6 +47,9 @@ public class Player : MonoBehaviour //, DamageAble
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         weapon = GetComponent<BaseWeapon>();
         currentAmmo = maxAmmo;
+        maxHealth = (int)getCredit.credit;
+        currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
 
 
     }
@@ -131,6 +145,7 @@ public class Player : MonoBehaviour //, DamageAble
     {
         //kall destroyed animasion
         //Destroy(gameObject);
+        TakeDamage(1f);
         Debug.Log("CollisionEnter");
         
         //Removes 
@@ -141,9 +156,25 @@ public class Player : MonoBehaviour //, DamageAble
 
     }
 
+    public virtual void TakeDamage(float damage)
+    {
+            TakeDamage(damage);
+        currentHealth -= damage;
+        Debug.Log("Health: " + currentHealth);
+        healthbar.SetHealth(currentHealth);
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
+    }
     public void Reload()
     {
         currentAmmo = 10;
     }
 
+    private void Die()
+    {
+        Debug.Log("Player has been defeated.");
+        Destroy(gameObject);
+    }
 }
