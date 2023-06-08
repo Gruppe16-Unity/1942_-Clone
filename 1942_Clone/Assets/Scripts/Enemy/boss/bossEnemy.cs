@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bossEnemy : Enemy
+public class BossEnemy : Enemy
 {
   
     private Rigidbody2D rb;
@@ -37,6 +37,7 @@ public class bossEnemy : Enemy
         Debug.Log("Health:" + currentHealth);
         if (currentHealth <= 0f)
         {
+            GM.EnemyBoss = 0;
             Die(); // If the health is zero or below, call the Die method
         }
     }

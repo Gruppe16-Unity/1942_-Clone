@@ -9,11 +9,11 @@ public class Enemy : MonoBehaviour, DamageAble
     public Color blinkColor = Color.red; // Color to blink
     private SpriteRenderer characterRenderer; // Reference to the character's sprite renderer
     private Color originalColor; // Original color of the character
-
+    public float exstraHealth;
     public AudioSource Bullet_Hit;
 
-
-    public float exstraHealth;
+    //References
+    public GameManager GM;
     public BaseWeapon weapon;
     public virtual void TakeDamage(float damage)
     {
@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour, DamageAble
 
     virtual protected void start() 
     {
+        GM = FindAnyObjectByType<GameManager>();
         Bullet_Hit = GetComponent<AudioSource>();
         characterRenderer = GetComponent<SpriteRenderer>();
         originalColor = characterRenderer.color;

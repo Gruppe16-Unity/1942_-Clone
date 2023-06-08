@@ -7,6 +7,20 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenuOverlay;
     public GameObject pauseMenuOverlay;
 
+    public int EnemyCount; // Counter of amount of mobs that exist in the scene.
+    public int EnemyBoss; // Counter of amount of bosses that exist in the scene.
+
+    //References
+    public GameManager GM;
+    protected void Update() 
+    {
+      
+
+  
+
+    }
+
+
     public void PlayGame()
     {
         // Load the game scene
@@ -16,8 +30,13 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Hide all menu overlays at the start
+        //Unloads All Scenes
+        SceneManager.UnloadScene("Level_1");
+        SceneManager.UnloadScene("Level_Boss");
 
+
+        GM = FindAnyObjectByType<GameManager>();
+        // Hide all menu overlays at the start
         ShowMainMenuOverlay();
     }
 

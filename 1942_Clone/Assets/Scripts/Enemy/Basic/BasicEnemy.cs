@@ -10,7 +10,8 @@ public class BasicEnemy : Enemy, DamageAble
 
     private float currentHealth;
     private Transform player;
-    //private BaseWeapon weapon; 
+  
+ 
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class BasicEnemy : Enemy, DamageAble
 
     private void Die()
     {
+        GM.EnemyCount--;
         Debug.Log("BasicEnemy has been defeated.");
         Destroy(gameObject);
     }

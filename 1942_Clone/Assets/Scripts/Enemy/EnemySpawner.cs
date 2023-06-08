@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public int spawnCount;
     private bool newSpawn;
     public int level;
+    public int maxSpawn;
     Vector3 spawnRadius;
     public GameObject greenEnemy;
     public GameObject redEnemy;
@@ -20,8 +21,12 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 1.5f;
     public float setSpawnDelay = 5f;
 
+    //References
+    GameManager GM;
+
     void Start()
     {
+        GM = FindAnyObjectByType<GameManager>();
         level = 1;
         spawnCount = 0;
         spawnAmount = 3;
@@ -32,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        while (true)
+        while (spawnCount < maxSpawn )
         {
             if (newSpawn)
             {
@@ -44,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
             spawnPoint.x += 1.5f;
             spawnPoint.y += 1.5f;
             GameObject newEnemy = Instantiate(Enemy, spawnPoint, Quaternion.Euler(0f, 0f, 180f));
+            GM.EnemyCount++;
             spawnCount++;
 
             if (spawnCount >= spawnAmount)
@@ -67,7 +73,6 @@ public class EnemySpawner : MonoBehaviour
     private GameObject GetEnemyType()
     {
         float randomValue = UnityEngine.Random.Range(0f, 1f);
-
         if (randomValue <= 0.33f)
         {
             return greenEnemy;

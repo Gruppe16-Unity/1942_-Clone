@@ -134,12 +134,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   islandPrefabs:
+  - {fileID: 294441369015348955, guid: 1372ca08b75d0564eb3bbda9bfc28ae0, type: 3}
+  - {fileID: 3596955812926493515, guid: 6459a4c755a6d69449c520423d6350b4, type: 3}
   - {fileID: 1473228060077236448, guid: ed456cfd788c04f40af21a1cb6046474, type: 3}
-  - {fileID: 5125176477747951250, guid: fbb53568fe8e2694cbcb31d3bdffa88b, type: 3}
+  - {fileID: 7150161784722697237, guid: cb2b14ea37b946b4eb169a16f6c93c1d, type: 3}
   - {fileID: 8617907242958299660, guid: ed58c3cf76192fa4aae251a7d3a7eff6, type: 3}
-  - {fileID: 1389057084899951478, guid: 84b4ea3dfb70fdf4dbdb30d727efbf3e, type: 3}
   - {fileID: 8091295377533364606, guid: 11d8073894955c8418ef0a8b97786534, type: 3}
-  - {fileID: 4519219709823474103, guid: d8f007b38fd8add4088a4f645fd95eef, type: 3}
   spawnInterval: 3
   scrollSpeed: 2
   spawnSpread: 10
