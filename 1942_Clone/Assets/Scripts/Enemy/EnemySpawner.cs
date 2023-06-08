@@ -28,25 +28,25 @@ public class EnemySpawner : MonoBehaviour
     {
         GM = FindAnyObjectByType<GameManager>();   // Get a reference to the game manager
         spawnCount = 0;                           // Reset spawn count
-        spawnAmount = 3;                          // Default spawn amount
+        spawnAmount = 5;                          // Default spawn amount
         StartCoroutine(SpawnEnemies());           // Start spawning enemies
     }
 
     IEnumerator SpawnEnemies()
     {
-        while (spawnCount < maxSpawn)
+        while (GM.EnemyCount < maxSpawn)  // Check if the current enemy count is less than the maximum spawn count
         {
             if (spawnCount == 0)
             {
-                spawnPoint = GetSpawnPoint();        // Get a random spawn point
-                enemy = GetEnemyType();              // Get a random enemy type
+                spawnPoint = GetSpawnPoint();       // Get a random spawn point
+                enemy = GetEnemyType();             // Get a random enemy type
             }
 
             spawnPoint.x += 1.5f;
             spawnPoint.y += 1.5f;
             GameObject newEnemy = Instantiate(enemy, spawnPoint, Quaternion.Euler(0f, 0f, 180f));
-            GM.EnemyCount++;                         // Increase enemy count in the game manager
-            spawnCount++;                            // Increase spawn count
+            GM.EnemyCount++;                        // Increase enemy count in the game manager
+            spawnCount++;                           // Increase spawn count
 
             if (spawnCount >= spawnAmount)
             {
@@ -56,6 +56,15 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(spawnInterval);
         }
+
+        // Wait until all enemies are defeated before finishing the coroutine
+        while (GM.EnemyCount > 0)
+        {
+            yield return null;
+        }
+
+        // All enemies have been defeated, do any necessary post-spawn logic here
+        Debug.Log("All enemies have been defeated.");
     }
 
     private Vector3 GetSpawnPoint()

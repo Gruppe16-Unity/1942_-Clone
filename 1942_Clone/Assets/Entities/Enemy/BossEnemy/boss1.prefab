@@ -164,12 +164,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkDuration: 0.2
   blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  Bullet_Hit: {fileID: 6785543856094979114, guid: 3c142fba761479f41b285207dd89e7d3, type: 3}
   exstraHealth: 0
+  Bullet_Hit: {fileID: 6785543856094979114, guid: 3c142fba761479f41b285207dd89e7d3, type: 3}
+  GM: {fileID: 0}
   weapon: {fileID: 0}
   BulletPrefab: {fileID: 7312022534601046639, guid: b7f25ee445c4c8f49a01c2b1f44b09e0, type: 3}
   maxHealth: 100
-  moveSpeed: 5
+  moveSpeed: 8
 --- !u!82 &-5108306931687943215
 AudioSource:
   m_ObjectHideFlags: 0
