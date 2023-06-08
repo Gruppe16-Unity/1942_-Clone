@@ -10,7 +10,7 @@ public class BasicEnemy : Enemy, DamageAble
 
     private float currentHealth;
     private Transform player;
-    //private BaseWeapon weapon;
+    //private BaseWeapon weapon; 
 
     private void Start()
     {
@@ -51,6 +51,9 @@ public class BasicEnemy : Enemy, DamageAble
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        if (player != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        }
     }
 }

@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d03dcae4870864e8be62b4d1e68e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 3670359454380512582}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0.016531467, a: 1}
@@ -653,4 +653,4 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  fill: {fileID: 0}
+  fill: {fileID: 2346371353559931384}

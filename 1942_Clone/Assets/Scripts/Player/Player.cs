@@ -40,14 +40,16 @@ public class Player : MonoBehaviour, DamageAble
 
     //References
     Rigidbody2D playerRigidbody2D;
-  
+    private Transform player;
+
     void Start()
     {
 
+        player = FindObjectOfType<Player>().transform;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         weapon = GetComponent<BaseWeapon>();
         currentAmmo = maxAmmo;
-        maxHealth = (int)getCredit.credit;
+        maxHealth = 15f;
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
 
@@ -57,25 +59,28 @@ public class Player : MonoBehaviour, DamageAble
     void Update()
     {
         //InputManagement();
-        
 
-        HandleMovement();
-        CooldownTime -= Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && CooldownTime <= 0f && currentAmmo > 0)
+        if (player != null)
         {
-            CooldownTime = shootCooldown;
-            weapon.Shoot(transform.position);
-            currentAmmo--; // Decrease ammo count
-            reloadTimer = 3f; // Start the reload timer
-        }
-        if (reloadTimer > 0f)
-        {
-            reloadTimer -= Time.deltaTime;
-            if (reloadTimer <= 0f)
+
+            HandleMovement();
+            CooldownTime -= Time.deltaTime;
+            if (Input.GetMouseButtonDown(0) && CooldownTime <= 0f && currentAmmo > 0)
             {
-                Reload();
+                CooldownTime = shootCooldown;
+                weapon.Shoot(transform.position);
+                currentAmmo--; // Decrease ammo count
+                reloadTimer = 3f; // Start the reload timer
             }
-        }
+            if (reloadTimer > 0f)
+            {
+                reloadTimer -= Time.deltaTime;
+                if (reloadTimer <= 0f)
+                {
+                    Reload();
+                }
+            }
+        }   
     }
 
 
@@ -84,25 +89,7 @@ public class Player : MonoBehaviour, DamageAble
         //OnMove();
         playerRigidbody2D.MovePosition(transform.position + Move * moveSpeed * Time.deltaTime);
     }
-/*
-    void InputManagement()
-    {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
 
-        moveDir = new Vector2(moveX, moveY).normalized;
-
-        if (moveDir.x != 0)
-        {
-            lastHorizontalVector = moveDir.x;
-        }
-
-        if (moveDir.y != 0)
-        {
-            lastVerticalVector = moveDir.y;
-        }
-    }
-*/
     public void HandleMovement()
     {
         float x = 0f;
@@ -132,15 +119,6 @@ public class Player : MonoBehaviour, DamageAble
         transform.position += Move * moveSpeed * Time.deltaTime;
     }
 
-
-    /*
-    void OnMove()
-    {
-        rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
-    }
-    */
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //kall destroyed animasion
@@ -158,7 +136,6 @@ public class Player : MonoBehaviour, DamageAble
 
     public virtual void TakeDamage(float damage)
     {
-            TakeDamage(damage);
         currentHealth -= damage;
         Debug.Log("Health: " + currentHealth);
         healthbar.SetHealth(currentHealth);
