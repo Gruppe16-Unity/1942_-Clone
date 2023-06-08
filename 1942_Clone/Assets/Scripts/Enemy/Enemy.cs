@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,9 @@ public class Enemy : MonoBehaviour, DamageAble
     public float exstraHealth;
     public AudioSource Bullet_Hit;
 
-    // References
+    //References
     public GameManager GM;
     public BaseWeapon weapon;
-
-    public int childIndex;
-
-    public PowerUpDropper powerUpDropper;
-
     public virtual void TakeDamage(float damage)
     {
         // Play Sound if they get hit.
@@ -27,27 +23,31 @@ public class Enemy : MonoBehaviour, DamageAble
         Debug.Log("Enemy took damage: " + damage);
     }
 
-    protected virtual void Start()
+    virtual protected void start() 
     {
-        GM = FindObjectOfType<GameManager>();
+        GM = FindAnyObjectByType<GameManager>();
         Bullet_Hit = GetComponent<AudioSource>();
         characterRenderer = GetComponent<SpriteRenderer>();
         originalColor = characterRenderer.color;
-        powerUpDropper = FindObjectOfType<PowerUpDropper>();
+
+
     }
 
-    public void OnDestroy()
+
+    private void OnDestroy()
     {
-       powerUpDropper.DropPowerUp();
+        //drop powerups??
     }
-
     protected virtual IEnumerator BlinkCharacter()
     {
+
         // Blink the character red for the specified duration
         characterRenderer.color = blinkColor;
         yield return new WaitForSeconds(blinkDuration);
 
         // Change the color back to the original color
         characterRenderer.color = originalColor;
+        
+        
     }
 }

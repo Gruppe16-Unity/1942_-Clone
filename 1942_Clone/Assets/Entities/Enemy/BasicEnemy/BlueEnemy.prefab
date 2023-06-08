@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1591137719076348038}
   - component: {fileID: 3453459582220814753}
   - component: {fileID: -2554565631578205253}
+  - component: {fileID: -117411636592742235}
   - component: {fileID: -7601503662288214307}
-  - component: {fileID: 2151548403992622695}
   m_Layer: 0
   m_Name: BlueEnemy
   m_TagString: Enemy
@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &471266856817507422
 CapsuleCollider2D:
@@ -165,14 +165,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkDuration: 0.2
   blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  Bullet_Hit: {fileID: 295671216788095154, guid: 6facda4376112b24c903018a3e942457, type: 3}
   exstraHealth: 0
-  Bullet_Hit: {fileID: 0}
-  GM: {fileID: 0}
   weapon: {fileID: 0}
-  childIndex: 0
   maxHealth: 10
   moveSpeed: 5
-  fireRate: 2
+  fireRate: 1
+--- !u!114 &-117411636592742235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344701824688972105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20414d3bde0c70408c5e6387a4dada4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firepoint: {fileID: 0}
+  BulletPrefab: {fileID: 7312022534601046639, guid: 6facda4376112b24c903018a3e942457, type: 3}
+  damage: 2
+  speed: 2
 --- !u!82 &-7601503662288214307
 AudioSource:
   m_ObjectHideFlags: 0
@@ -269,19 +283,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2151548403992622695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8344701824688972105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90c480fb5f193db499b5a8a6fb5c0534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7312022534601046639, guid: 6facda4376112b24c903018a3e942457, type: 3}
-  bombPrefab: {fileID: 7312022534601046639, guid: 56c46e4f80b2297429c838db4d8a1127, type: 3}
-  firePoint: {fileID: 0}
-  Spiller: {fileID: 0}

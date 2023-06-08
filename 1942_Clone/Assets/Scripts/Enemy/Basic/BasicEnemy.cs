@@ -6,41 +6,50 @@ public class BasicEnemy : Enemy, DamageAble
 {
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float fireRate = 2f;
+    [SerializeField] private float fireRate = 10f;
 
     private float currentHealth;
     private Transform player;
-    private float nextFireTime;
+  
+ 
 
     private void Start()
     {
-        base.Start();
+        base.start();
         currentHealth = maxHealth;
         player = FindObjectOfType<Player>().transform;
-        nextFireTime = Time.time;
+        weapon = GetComponent<BaseWeapon>();
+
+      //  StartCoroutine(AttackCoroutine());
     }
 
-    public override void TakeDamage(float damage)
+    override public void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         currentHealth -= damage;
-        if (currentHealth < 0f)
+        Debug.Log("Health: " + currentHealth);
+        StartCoroutine(BlinkCharacter());
+        if (currentHealth <= 0f)
         {
-            Debug.Log("Health: " + currentHealth);
-            Die();
             GameManager.Instance.IncreaseScore(10);
-            currentHealth = 0f; // Ensure health doesn't go below zero
+            Die();
         }
-            StartCoroutine(BlinkCharacter());
-
     }
 
-        private void Die()
+    private void Die()
     {
+        GM.EnemyCount--;
         Debug.Log("BasicEnemy has been defeated.");
         Destroy(gameObject);
-        base.OnDestroy();
-        GM.EnemyCount--;
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        while (true)
+        {
+            weapon.Shoot(transform.position);
+            yield return new WaitForSeconds(fireRate);
+        }
     }
 
     private void Update()
@@ -48,26 +57,6 @@ public class BasicEnemy : Enemy, DamageAble
         if (player != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-
-            if (Time.time >= nextFireTime)
-            {
-                Shoot();
-                nextFireTime = Time.time + fireRate;
-            }
-          
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Enenmy"))
-        {
-            TakeDamage(10f);
-        }
-    }
-
-    private void Shoot()
-    {
-        FindObjectOfType<BaseWeapon>().EnemyShoot(transform, player.transform, 1);
     }
 }

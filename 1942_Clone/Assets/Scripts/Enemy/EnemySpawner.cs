@@ -27,7 +27,6 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         GM = FindAnyObjectByType<GameManager>();
-        level = 1;
         spawnCount = 0;
         spawnAmount = 3;
         newSpawn = true;
