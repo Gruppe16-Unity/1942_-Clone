@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, DamageAble
+public class Player2 : MonoBehaviour
 {
     //GameObject
     public GameObject impactEffect;
@@ -45,13 +45,13 @@ public class Player : MonoBehaviour, DamageAble
 
     void Start()
     {
-        player = FindObjectOfType<Player>().transform;
+        player = FindObjectOfType<Player2>().transform;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         weapon = GetComponent<BaseWeapon>();
         currentAmmo = maxAmmo;
         maxHealth = 15f;
         currentHealth = maxHealth;
-        healthbar.SetMaxHealth(maxHealth);
+       
 
 
     }
@@ -59,19 +59,21 @@ public class Player : MonoBehaviour, DamageAble
     void Update()
     {
         //InputManagement();
-
+        
         if (player != null)
         {
 
             HandleMovement();
+            /**
             CooldownTime -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Space) && CooldownTime <= 0f && currentAmmo > 0)
+            if (Input.GetMouseButtonDown(0) && CooldownTime <= 0f && currentAmmo > 0)
             {
                 CooldownTime = shootCooldown;
                 weapon.Shoot(transform.position);
                 currentAmmo--; // Decrease ammo count
                 reloadTimer = 3f; // Start the reload timer
             }
+            */
             if (reloadTimer > 0f)
             {
                 reloadTimer -= Time.deltaTime;
@@ -81,6 +83,7 @@ public class Player : MonoBehaviour, DamageAble
                 }
             }
         }
+    
     }
 
 
@@ -94,22 +97,22 @@ public class Player : MonoBehaviour, DamageAble
     {
         float x = 0f;
         float y = 0f;
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             y = +1f;
             //Debug.Log("w pressed");
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             x = -1f;
             //Debug.Log("q pressed");
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             y = -1f;
             //Debug.Log("s pressed");
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             x = +1f;
             //Debug.Log("d pressed");
@@ -118,36 +121,36 @@ public class Player : MonoBehaviour, DamageAble
         Vector3 Move = new Vector3(x, y).normalized;
         transform.position += Move * moveSpeed * Time.deltaTime;
     }
+    /**
+   private void OnCollisionEnter2D(Collision2D collision)
+   {
+       //kall destroyed animasion
+       //Destroy(gameObject);
+       TakeDamage(1f);
+       Debug.Log("CollisionEnter");
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //kall destroyed animasion
-        //Destroy(gameObject);
-        TakeDamage(1f);
-        Debug.Log("CollisionEnter");
+       //Removes 
+       //Object.Destroy(gameObject);
 
-        //Removes 
-        //Object.Destroy(gameObject);
+       //Impact Effect
+       Instantiate(impactEffect, transform.position, transform.rotation);
 
-        //Impact Effect
-        Instantiate(impactEffect, transform.position, transform.rotation);
-
-    }
-
-    public virtual void TakeDamage(float damage)
-    {
-        currentHealth -= damage;
-        Debug.Log("Health: " + currentHealth);
-        healthbar.SetHealth(currentHealth);
-        if (currentHealth == 0f)
-        {
-            Die();
-        }
-    }
+   }
+  
+   public virtual void TakeDamage(float damage)
+   {
+       currentHealth -= damage;
+       Debug.Log("Health: " + currentHealth);
+       healthbar.SetHealth(currentHealth);
+       if (currentHealth == 0f)
+       {
+           Die();
+       }
+   }*/
     public void Reload()
-    {
-        currentAmmo = 10;
-    }
+   {
+       currentAmmo = 10;
+   }
 
     private void Die()
     {
@@ -167,7 +170,7 @@ public class Player : MonoBehaviour, DamageAble
 
         Debug.Log("Coroutine finished");
     }
-    
+
     // Function to decrease HP
     public void DecreaseHP(int amount)
     {

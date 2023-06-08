@@ -23,10 +23,36 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        GM.EnemyCount = 0;
+        GM.EnemyBoss = 0;
+        int CurrenctPoints = GameManager.Instance.GetCredit();
+        // Checks if players has enough Money DuoPlayer.
+        if (CurrenctPoints > 1)
+        {
+            // Consumes 2 Coin to play
+            GameManager.Instance.DecreaseCredit(2);
+            
+            //Gonna Insert Code for multiplayer spawn here
 
-        // Load the game scene
-        SceneManager.LoadScene("Level_1");
-        HideAllOverlays();
+            // Load the game scene
+            SceneManager.LoadScene("Duo_Level_1");
+
+            HideAllOverlays();
+
+        }
+        // Checks if players has enough Money for SinglePlayer.
+        else if (CurrenctPoints > 0)
+        {
+            // Consumes 1 Coin to play
+            GameManager.Instance.DecreaseCredit(1);
+
+            // Load the game scene
+            SceneManager.LoadScene("Level_1");
+
+            HideAllOverlays();
+
+        }
+       
     }
 
     private void Start()

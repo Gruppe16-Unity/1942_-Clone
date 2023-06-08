@@ -40,8 +40,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SceneLoader();
+        // Get the name of the current active scene
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
+        // Check if the scene name starts with "duo_"
+        if (currentSceneName.StartsWith("Duo_"))
+        {
+            Duo_SceneLoader();
+        }
+
+        // Get the name of the current active scene
+        if (currentSceneName.StartsWith("Level"))
+        {
+            SceneLoader();
+        }
     }
 
     private IEnumerator WaitForSecondsCoroutine()
@@ -113,6 +125,61 @@ public class GameManager : MonoBehaviour
             case "Level_Boss":
                 if (EnemyCount == 0 && EnemyBoss == 0)
                 {
+                    SceneManager.LoadScene("Win");
+                    // Handle level boss completion or any other actions
+                }
+                break;
+        }
+
+    }
+    private void Duo_SceneLoader()
+    {
+        // Get the current active scene
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Use a switch statement to check the name of the current scene
+        switch (currentScene.name)
+        {
+            case "Duo_Level_1":
+                // Check if the enemy count and boss count are both zero, Gives Options to put different Conditions on other Levels.
+                if (EnemyCount == 0 && EnemyBoss == 0)
+                {
+                    // Load the next scene
+                    SceneManager.LoadScene("Duo_Level_2");
+                }
+                break;
+            case "Duo_Level_2":
+                if (EnemyCount == 0 && EnemyBoss == 0)
+                {
+                    // Load the next scene
+                    SceneManager.LoadScene("Duo_Level_3");
+                }
+                break;
+            case "Duo_Level_3":
+                if (EnemyCount == 0 && EnemyBoss == 0)
+                {
+                    // Load the next scene
+                    SceneManager.LoadScene("Duo_Level_4");
+                }
+                break;
+            case "Duo_Level_4":
+                if (EnemyCount == 0 && EnemyBoss == 0)
+                {
+                    // Load the next scene
+                    SceneManager.LoadScene("Duo_Level_5");
+                }
+                break;
+            case "Duo_Level_5":
+                if (EnemyCount == 0 && EnemyBoss == 0)
+                {
+                    // Load the next scene
+                    SceneManager.LoadScene("Duo_Level_Boss");
+                }
+                break;
+            case "Duo_Level_Boss":
+                if (EnemyCount == 0 && EnemyBoss == 0)
+                {
+                    SceneManager.LoadScene("Win");
                     // Handle level boss completion or any other actions
                 }
                 break;
@@ -125,6 +192,11 @@ public class GameManager : MonoBehaviour
         ScoreDisplay.SD_Instance.UpdateScoreText();
     }
 
+    public void DecreaseCredit(int amount)
+    {
+        GameManager.Instance.CreditPoint -= amount;
+        Credit.CI.UpdateCreditText();
+    }
     public void IncreaseCredit(int amount)
     {
         GameManager.Instance.CreditPoint += amount;

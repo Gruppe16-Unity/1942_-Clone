@@ -9,24 +9,45 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 1bdda2459e4c7cf4da64ae6a4acb456e
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Win.unity
+    guid: 6e5c7aa6c82d6d64395bcedba011a803
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: fd725939310404844bf67e7061e4a16e
   - enabled: 1
     path: Assets/Scenes/Level_1.unity
     guid: 59246cf9d18433f43859339a083731ca
   - enabled: 1
+    path: Assets/Scenes/Duo/Duo_Level_1.unity
+    guid: 100b7348c5b9118409f9dc64de1b39d2
+  - enabled: 1
     path: Assets/Scenes/Level_2.unity
     guid: 79f1f216543dfd54884b6850f5c2a925
+  - enabled: 1
+    path: Assets/Scenes/Duo/Duo_Level_2.unity
+    guid: 4ce0c23156147404fae1a0e44c8c2d77
   - enabled: 1
     path: Assets/Scenes/Level_3.unity
     guid: e99c159c79d660142b9997b0754c774d
   - enabled: 1
+    path: Assets/Scenes/Duo/Duo_Level_3.unity
+    guid: 96d1f77b92588b342af5c847d9406900
+  - enabled: 1
     path: Assets/Scenes/Level_4.unity
     guid: 74e04fe6559bfdc4b86c745e42d36b92
+  - enabled: 1
+    path: Assets/Scenes/Duo/Duo_Level_4.unity
+    guid: 3e3d6b44d2258f447b70b33efff41daa
   - enabled: 1
     path: Assets/Scenes/Level_5.unity
     guid: 48e289ea7b418f444a5d191076f36aea
   - enabled: 1
+    path: Assets/Scenes/Duo/Duo_Level_5.unity
+    guid: fae1e0d32ed84df4095bc06ecffd87a1
+  - enabled: 1
     path: Assets/Scenes/Level_Boss.unity
     guid: be7eeb4ea61886c47bd3a7f41353e5f1
+  - enabled: 1
+    path: Assets/Scenes/Duo/Duo_Level_Boss.unity
+    guid: b05d23501d02f4f45bbf030fc4a78c05
   m_configObjects: {}
