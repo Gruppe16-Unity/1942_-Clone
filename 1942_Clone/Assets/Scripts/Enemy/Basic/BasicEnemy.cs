@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class BasicEnemy : Enemy, DamageAble
 {
-    [SerializeField] private float maxHealth;    // Maximum health of the enemy
-    [SerializeField] private float moveSpeed = 5f;     // Movement speed of the enemy
-    [SerializeField] private float fireRate = 10f;     // Fire rate of the enemy's weapon
+    public float maxHealth;    // Maximum health of the enemy
+    public float moveSpeed = 5f;     // Movement speed of the enemy
+    public float fireRate = 10f;     // Fire rate of the enemy's weapon
 
     private float Multiplier;
     private int level;
     private float Map_Level;
     public float currentHealth;                        // Current health of the enemy
     private Transform player;                           // Reference to the player's transform
-    // private BaseWeapon weapon;                        // Reference to the enemy's weapon (assuming it's assigned elsewhere)
+   
 
     private void Start()
     {
+
         level = FindAnyObjectByType<EnemySpawner>().level;
         base.start();                                   // Call the base class's Start method
         Map_Level = (float)level;

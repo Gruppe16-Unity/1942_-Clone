@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player2 : MonoBehaviour
+public class Player2 : MonoBehaviour, DamageAble
 {
     //GameObject
     public GameObject impactEffect;
@@ -45,26 +45,25 @@ public class Player2 : MonoBehaviour
 
     void Start()
     {
+        WeaponSwap();
         player = FindObjectOfType<Player2>().transform;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
-        weapon = GetComponent<BaseWeapon>();
         currentAmmo = maxAmmo;
         maxHealth = 15f;
         currentHealth = maxHealth;
-       
+        healthbar.SetMaxHealth(maxHealth);
+
 
 
     }
 
     void Update()
     {
-        //InputManagement();
-        
         if (player != null)
         {
 
             HandleMovement();
-            /**
+            
             CooldownTime -= Time.deltaTime;
             if (Input.GetMouseButtonDown(0) && CooldownTime <= 0f && currentAmmo > 0)
             {
@@ -73,7 +72,7 @@ public class Player2 : MonoBehaviour
                 currentAmmo--; // Decrease ammo count
                 reloadTimer = 3f; // Start the reload timer
             }
-            */
+            
             if (reloadTimer > 0f)
             {
                 reloadTimer -= Time.deltaTime;
@@ -121,36 +120,35 @@ public class Player2 : MonoBehaviour
         Vector3 Move = new Vector3(x, y).normalized;
         transform.position += Move * moveSpeed * Time.deltaTime;
     }
-    /**
-   private void OnCollisionEnter2D(Collision2D collision)
-   {
-       //kall destroyed animasion
-       //Destroy(gameObject);
-       TakeDamage(1f);
-       Debug.Log("CollisionEnter");
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //kall destroyed animasion
+        //Destroy(gameObject);
+        TakeDamage(1f);
+        Debug.Log("CollisionEnter");
 
-       //Removes 
-       //Object.Destroy(gameObject);
+        //Removes 
+        //Object.Destroy(gameObject);
 
-       //Impact Effect
-       Instantiate(impactEffect, transform.position, transform.rotation);
+        //Impact Effect
+        Instantiate(impactEffect, transform.position, transform.rotation);
 
-   }
-  
-   public virtual void TakeDamage(float damage)
-   {
-       currentHealth -= damage;
-       Debug.Log("Health: " + currentHealth);
-       healthbar.SetHealth(currentHealth);
-       if (currentHealth == 0f)
-       {
-           Die();
-       }
-   }*/
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("Health: " + currentHealth);
+        healthbar.SetHealth(currentHealth);
+        if (currentHealth == 0f)
+        {
+            Die();
+        }
+    }
     public void Reload()
-   {
-       currentAmmo = 10;
-   }
+    {
+        currentAmmo = 10;
+    }
 
     private void Die()
     {
@@ -158,7 +156,7 @@ public class Player2 : MonoBehaviour
         Destroy(gameObject);
         WaitForSecondsCoroutine();
         SceneManager.LoadScene("GameOver");
-       
+
 
     }
 
@@ -175,5 +173,21 @@ public class Player2 : MonoBehaviour
     public void DecreaseHP(int amount)
     {
         sharedHP.DecreaseSharedHealth(amount);
+    }
+
+    public void WeaponSwap()
+    {
+        if (GetComponent<AdvancedWeaponUpgrade>() != null)
+        {
+            weapon = GetComponent<AdvancedWeaponUpgrade>();
+        }
+        else if (GetComponent<WeaponUgrade>() != null)
+        {
+            weapon = GetComponent<WeaponUgrade>();
+        }
+        else if (GetComponent<NormalWeapon>() != null)
+        {
+            weapon = GetComponent<NormalWeapon>();
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class AdvancedWeaponUpgrade : BaseWeapon
+public class NormalWeapon : BaseWeapon
 {
     public Transform firepoint;
     public GameObject BulletPrefab;

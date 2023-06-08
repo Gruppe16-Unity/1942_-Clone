@@ -45,9 +45,9 @@ public class Player : MonoBehaviour, DamageAble
 
     void Start()
     {
+        WeaponSwap();
         player = FindObjectOfType<Player>().transform;
         playerRigidbody2D = GetComponent<Rigidbody2D>();
-        weapon = GetComponent<BaseWeapon>();
         currentAmmo = maxAmmo;
         maxHealth = 15f;
         currentHealth = maxHealth;
@@ -173,4 +173,20 @@ public class Player : MonoBehaviour, DamageAble
     {
         sharedHP.DecreaseSharedHealth(amount);
     }
+
+    public void WeaponSwap()
+    {
+        if (GetComponent<AdvancedWeaponUpgrade>() != null)
+        {
+            weapon = GetComponent<AdvancedWeaponUpgrade>();
+        }
+        else if (GetComponent<WeaponUgrade>() != null)
+        {
+            weapon = GetComponent<WeaponUgrade>();
+        }
+        else if (GetComponent<NormalWeapon>() != null)
+        {
+            weapon = GetComponent<NormalWeapon>();
+        }
+    }  
 }
