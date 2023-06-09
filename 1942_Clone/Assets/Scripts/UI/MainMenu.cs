@@ -59,7 +59,15 @@ public class MainMenu : MonoBehaviour
     {
         GM = FindAnyObjectByType<GameManager>();
         // Hide all menu overlays at the start
-        ShowMainMenuOverlay();
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "Menu")
+        {
+            // Hide all menu overlays at the start
+            ShowMainMenuOverlay();
+        }else
+        {
+            HideAllOverlays();
+        }
     }
 
     public void ShowMainMenuOverlay()
@@ -94,11 +102,12 @@ public class MainMenu : MonoBehaviour
         pauseMenuOverlay.SetActive(false);
     }
 
-    public void QuitGame()
-    {
+        public void QuitGame()
+        {
         // Quit the application
-        Application.Quit();
-    }
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
+        }
 
    
 

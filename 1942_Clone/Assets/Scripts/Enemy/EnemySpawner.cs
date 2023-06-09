@@ -30,6 +30,8 @@ public class EnemySpawner : MonoBehaviour
         spawnCount = 0;                           // Reset spawn count
         spawnAmount = 5;                          // Default spawn amount
         StartCoroutine(SpawnEnemies());           // Start spawning enemies
+        GM.EnemyBoss = 1;
+        Instantiate(boss, new Vector3(-26.42f, 6.08f, 01365489), Quaternion.Euler(0f, 0f, 180f));
     }
 
     IEnumerator SpawnEnemies()

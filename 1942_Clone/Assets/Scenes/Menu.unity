@@ -228,6 +228,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &233555685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4722414191896471641, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
+  m_PrefabInstance: {fileID: 2096682880004146951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &435662766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1367,6 +1372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 5143723429881707481, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
+      propertyPath: pauseMenuOverlay
+      value: 
+      objectReference: {fileID: 233555685}
     - target: {fileID: 5260299141500070011, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -1599,7 +1608,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 94.62427
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5143723429881707481, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
     m_RemovedGameObjects:
     - {fileID: 5852272819108232978, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
     - {fileID: 8726972273518828951, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
@@ -1615,7 +1625,7 @@ PrefabInstance:
       addedObject: {fileID: 1177553590}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5130387226435353075, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 1702899486}
     - targetCorrespondingSourceObject: {fileID: 4321867394363884826, guid: 2717958b557ec404f853b2b4613b9cef, type: 3}
       insertIndex: -1

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Pause : MonoBehaviour
 {
     private bool isPaused = false;
+    public GameObject pauseMenuOverlay;
 
     // Update is called once per frame
     void Update()
@@ -25,14 +26,15 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 0f; // Stop the time to pause the game
         isPaused = true;
+        pauseMenuOverlay.SetActive(true); // Show the pause menu overlay
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f; // Resume the time to unpause the game
         isPaused = false;
+        pauseMenuOverlay.SetActive(false); // Hide the pause menu overlay
     }
-
 
     public void OpenOptions()
     {
@@ -42,6 +44,7 @@ public class Pause : MonoBehaviour
 
     public void QuitGame()
     {
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }

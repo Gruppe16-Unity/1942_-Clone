@@ -52,7 +52,7 @@ public class BossEnemy : Enemy, DamageAble
         Debug.Log("Health:" + currentHealth);
         if (currentHealth <= 0f)
         {
-            GM.EnemyBoss = 0;
+            
             GameManager.Instance.IncreaseScore(100);
             Die(); // If the health is zero or below, call the Die() method
         }
@@ -61,6 +61,7 @@ public class BossEnemy : Enemy, DamageAble
     private void Die()
     {
         // Implement the logic for enemy death, such as destroying the GameObject or playing death animations
+        GM.EnemyBoss--;
         Debug.Log("BossEnemy has been defeated.");
         Destroy(gameObject);
     }
