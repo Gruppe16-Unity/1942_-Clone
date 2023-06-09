@@ -227,8 +227,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 86
+  m_fontSizeBase: 86
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.029804857, y: 0.2656783, z: -93.89841, w: -0.6433602}
+  m_margin: {x: 3.0792236, y: 0.2656783, z: -3.7382202, w: 18.010376}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -913,6 +913,9 @@ MonoBehaviour:
   mainMenuOverlay: {fileID: 3315991773390120567}
   optionsMenuOverlay: {fileID: 3085115437852198622}
   pauseMenuOverlay: {fileID: 4722414191896471641}
+  EnemyCount: 0
+  EnemyBoss: 0
+  GM: {fileID: 0}
 --- !u!1 &3436572926394590932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,7 +2549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreditText: {fileID: 3808314638289589898}
-  credit: 0
 --- !u!1 &8912027155536848159
 GameObject:
   m_ObjectHideFlags: 0
