@@ -906,6 +906,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 5118217788224852775, guid: f2a11348988e3c04eb6d802f6b381f19, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823142146133332052, guid: f2a11348988e3c04eb6d802f6b381f19, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7062818463223885183, guid: f2a11348988e3c04eb6d802f6b381f19, type: 3}
       propertyPath: healthbar
       value: 
@@ -1027,6 +1035,14 @@ PrefabInstance:
       propertyPath: healthbar
       value: 
       objectReference: {fileID: 662367996}
+    - target: {fileID: 3615120117528739505, guid: 75828f3193c7806449a4dd7919682839, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3972016010900053354, guid: 75828f3193c7806449a4dd7919682839, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5880258792605285760, guid: 75828f3193c7806449a4dd7919682839, type: 3}
       propertyPath: damage
       value: 3
