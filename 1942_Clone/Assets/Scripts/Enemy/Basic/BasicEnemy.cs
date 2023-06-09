@@ -70,26 +70,46 @@ public class BasicEnemy : Enemy, DamageAble
 
     private void Update()
     {
-        Movement(); // Move the boss enemy
-
-        // Check if it's time to shoot
-        if (Time.time >= nextShootTime)
+        if (player != null)
         {
-            SetRandomShootInterval(); // Set a new random shoot interval
-
-            Instantiate(BulletPrefab, transform.position + new Vector3(0f, -2, 0f), Quaternion.identity);
-            // Instantiate a bullet prefab at a specific position relative to the boss enemy
+            Movement(); // Move the boss enemy
+            HandelShooting(); //enemy Shoot
         }
+        
     }
 
     private void Movement()
     {
-        if (player != null)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-            // Move the enemy towards the player's position at the specified move speed
-        }
+      
+        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        // Move the enemy towards the player's position at the specified move speed
+
     }
+
+    private void HandelShooting() { 
+     
+        // Check if it's time to shoot
+        float lineOfSightAngle = 70f;
+        Vector3 directionToPlayer = player.position - transform.position;
+
+        // Calculate the angle between the enemy's forward direction and the direction to the player
+        float angleToPlayer = Vector3.Angle(transform.up, directionToPlayer);
+
+        // Check if the player is within the line of sight
+        if (angleToPlayer <= lineOfSightAngle)
+        {
+            if (Time.time >= nextShootTime)
+            {
+                SetRandomShootInterval(); // Set a new random shoot interval
+
+                Instantiate(BulletPrefab, transform.position + new Vector3(0f, -2, 0f), Quaternion.identity);
+                // Instantiate a bullet prefab at a specific position relative to the boss enemy
+            }
+        }
+
+    }
+
+
     private void SetRandomShootInterval()
     {
         // Generate a random shoot interval between 1 and 3 seconds
