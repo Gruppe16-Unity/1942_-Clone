@@ -19,7 +19,8 @@ public class BasicEnemy : Enemy, DamageAble
     public GameObject BulletPrefab;
     private Transform player;       // Reference to the player's transform
     public Rigidbody2D rb;
-
+    public PowerUpDropper powerUpDropper;
+    
     private void Start()
     {
         base.start(); // Call the base class's Start method
@@ -55,6 +56,7 @@ public class BasicEnemy : Enemy, DamageAble
         GM.EnemyCount--;                                  // Decrement the enemy count in the game manager
         Debug.Log("BasicEnemy has been defeated.");
         Destroy(gameObject);                             // Destroy the enemy game object
+        DropPowerUp();
     }
 
     private IEnumerator AttackCoroutine()
@@ -109,6 +111,16 @@ public class BasicEnemy : Enemy, DamageAble
         return Multiplier;
     }
 
+    protected void DropPowerUp()
+    {
+        //Debug.Log("truffet powerup");
+        GameObject tokenPrefab = powerUpDropper.DetermineDropToken();
 
+        if (tokenPrefab != null)
+        {
+            Instantiate(tokenPrefab, transform.position, Quaternion.identity);
+        }
+       
+    }
 
 }

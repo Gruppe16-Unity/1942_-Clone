@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a85db9e7cc05b284abcde347ebeadf6c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SmallHealthBuff: {fileID: 979710989125052801, guid: 9c3c0dafdfd6bfa47abb5e92a370bf81, type: 3}
+  - MediumHealthBuff: {fileID: 979710989125052801, guid: 9c3c0dafdfd6bfa47abb5e92a370bf81, type: 3}
+  - LargeHealthBuff: {fileID: 5916366750518168481, guid: 774cebf66b5a64c4cbeb4a3f945d4cd1, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

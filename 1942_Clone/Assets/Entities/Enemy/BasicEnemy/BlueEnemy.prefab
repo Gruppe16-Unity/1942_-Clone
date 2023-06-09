@@ -174,6 +174,7 @@ MonoBehaviour:
   fireRate: 1
   BulletPrefab: {fileID: 7312022534601046639, guid: b7f25ee445c4c8f49a01c2b1f44b09e0, type: 3}
   rb: {fileID: 0}
+  powerUpDropper: {fileID: 7619687531982480165, guid: b15412189baf0114e9bc13fa14cfb03c, type: 3}
 --- !u!82 &-7601503662288214307
 AudioSource:
   m_ObjectHideFlags: 0
