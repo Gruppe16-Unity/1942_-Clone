@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1591137719076348038}
   - component: {fileID: 3453459582220814753}
   - component: {fileID: -2554565631578205253}
-  - component: {fileID: -117411636592742235}
   - component: {fileID: -7601503662288214307}
   m_Layer: 0
   m_Name: BlueEnemy
@@ -29,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8344701824688972105}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 2.5509129, y: -0.65001065, z: -0.013654893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!70 &471266856817507422
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -66,7 +65,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.1}
@@ -165,28 +164,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkDuration: 0.2
   blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  Bullet_Hit: {fileID: 295671216788095154, guid: 6facda4376112b24c903018a3e942457, type: 3}
   exstraHealth: 0
+  Bullet_Hit: {fileID: 295671216788095154, guid: 6facda4376112b24c903018a3e942457, type: 3}
+  GM: {fileID: 0}
   weapon: {fileID: 0}
+  currentHealth: 0
   maxHealth: 10
   moveSpeed: 5
   fireRate: 1
---- !u!114 &-117411636592742235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8344701824688972105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20414d3bde0c70408c5e6387a4dada4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firepoint: {fileID: 0}
-  BulletPrefab: {fileID: 7312022534601046639, guid: 6facda4376112b24c903018a3e942457, type: 3}
-  damage: 2
-  speed: 2
+  BulletPrefab: {fileID: 7312022534601046639, guid: b7f25ee445c4c8f49a01c2b1f44b09e0, type: 3}
+  rb: {fileID: 0}
 --- !u!82 &-7601503662288214307
 AudioSource:
   m_ObjectHideFlags: 0

@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3848029383791934197}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: 2.5509129, y: -0.65001065, z: -0.013654893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!212 &7354326717585767667
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -144,7 +144,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -168,10 +168,12 @@ MonoBehaviour:
   Bullet_Hit: {fileID: 6785543856094979114, guid: 3c142fba761479f41b285207dd89e7d3, type: 3}
   GM: {fileID: 0}
   weapon: {fileID: 0}
+  currentHealth: 0
   maxHealth: 20
   moveSpeed: 5
   fireRate: 1
-  currentHealth: 0
+  BulletPrefab: {fileID: 7312022534601046639, guid: b7f25ee445c4c8f49a01c2b1f44b09e0, type: 3}
+  rb: {fileID: 1788532138856900297}
 --- !u!82 &8977300446136194522
 AudioSource:
   m_ObjectHideFlags: 0

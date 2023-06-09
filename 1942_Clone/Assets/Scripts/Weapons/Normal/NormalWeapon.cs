@@ -35,12 +35,5 @@ public class NormalWeapon : BaseWeapon
 
     }
 
-    public void StopShoot()
-    {
-
-
-    }
-
-
 
 }

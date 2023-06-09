@@ -29,7 +29,7 @@ public class AdvancedWeaponUpgrade : BaseWeapon
     public override void Shoot(Vector3 firePointPosition)
     {
         //Shooting Logic
-        Instantiate(BulletPrefab, firePointPosition + new Vector3(0, 1.1f, 0), Quaternion.identity);
+        Instantiate(BulletPrefab, firePointPosition + new Vector3(0, 1.5f, 0), Quaternion.identity);
         blast.Play();
         new WaitForSeconds(FireRate);
 

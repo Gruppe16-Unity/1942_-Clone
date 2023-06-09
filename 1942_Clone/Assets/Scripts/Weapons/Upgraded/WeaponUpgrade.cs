@@ -35,11 +35,6 @@ public class WeaponUgrade : BaseWeapon
 
     }
 
-    public void StopShoot()
-    {
-
-
-    }
 
 
 

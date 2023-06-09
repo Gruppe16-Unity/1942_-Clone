@@ -118,7 +118,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -170,8 +170,10 @@ MonoBehaviour:
   GM: {fileID: 0}
   weapon: {fileID: 0}
   BulletPrefab: {fileID: 7312022534601046639, guid: b7f25ee445c4c8f49a01c2b1f44b09e0, type: 3}
-  maxHealth: 100
   moveSpeed: 8
+  level: 0
+  Map_Level: 0
+  maxHealth: 100
 --- !u!82 &-5108306931687943215
 AudioSource:
   m_ObjectHideFlags: 0

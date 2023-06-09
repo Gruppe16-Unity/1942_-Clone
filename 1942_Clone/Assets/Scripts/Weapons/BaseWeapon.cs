@@ -18,8 +18,5 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public abstract void Shoot(Vector3 firePointPosition);
 
-    public void StopShoot()
-    {
-        // Implementation for stopping shooting
-    }
+
 }

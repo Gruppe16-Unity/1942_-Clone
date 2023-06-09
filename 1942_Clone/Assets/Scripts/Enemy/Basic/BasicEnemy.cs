@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class BasicEnemy : Enemy, DamageAble
 {
+    public float currentHealth; // Current health of the enemy
     public float maxHealth;    // Maximum health of the enemy
-    public float moveSpeed = 5f;     // Movement speed of the enemy
+    public float moveSpeed;     // Movement speed of the enemy
     public float fireRate = 10f;     // Fire rate of the enemy's weapon
 
     private float Multiplier;
     private int level;
     private float Map_Level;
-    public float currentHealth;                        // Current health of the enemy
-    private Transform player;                           // Reference to the player's transform
-   
+    private float nextShootTime;  // Time for the next shoot
+    private float shootInterval;  // Random shoot interval between 1 and 3 seconds
+
+
+    public GameObject BulletPrefab;
+    private Transform player;       // Reference to the player's transform
+    public Rigidbody2D rb;
 
     private void Start()
     {
+        base.start(); // Call the base class's Start method
 
+        rb = GetComponent<Rigidbody2D>();
         level = FindAnyObjectByType<EnemySpawner>().level;
-        base.start();                                   // Call the base class's Start method
+        player = FindObjectOfType<Player>().transform;  // Find and assign the player's transform   
+
+        //Stats Adjustments
         Map_Level = (float)level;
         currentHealth =  maxHealth * StatsIncreaser(Map_Level); // Set the current health to the maximum health
-        player = FindObjectOfType<Player>().transform;  // Find and assign the player's transform
-
+     
         // StartCoroutine(AttackCoroutine());           // Start the attack coroutine if needed
     }
 
@@ -60,13 +68,33 @@ public class BasicEnemy : Enemy, DamageAble
 
     private void Update()
     {
+        Movement(); // Move the boss enemy
+
+        // Check if it's time to shoot
+        if (Time.time >= nextShootTime)
+        {
+            SetRandomShootInterval(); // Set a new random shoot interval
+
+            Instantiate(BulletPrefab, transform.position + new Vector3(0f, -2, 0f), Quaternion.identity);
+            // Instantiate a bullet prefab at a specific position relative to the boss enemy
+        }
+    }
+
+    private void Movement()
+    {
         if (player != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
             // Move the enemy towards the player's position at the specified move speed
         }
     }
+    private void SetRandomShootInterval()
+    {
+        // Generate a random shoot interval between 1 and 3 seconds
 
+        shootInterval = Random.Range(1f, 3f);
+        nextShootTime = Time.time + shootInterval;
+    }
 
     private float StatsIncreaser(float level)
     {
@@ -80,6 +108,7 @@ public class BasicEnemy : Enemy, DamageAble
     
         return Multiplier;
     }
+
 
 
 }

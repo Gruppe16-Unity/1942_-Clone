@@ -177,17 +177,30 @@ public class Player2 : MonoBehaviour, DamageAble
 
     public void WeaponSwap()
     {
-        if (GetComponent<AdvancedWeaponUpgrade>() != null)
+        weapon = null; // Reset the weapon variable
+
+        // Check if AdvancedWeaponUpgrade script is active
+        AdvancedWeaponUpgrade advancedWeapon = GetComponent<AdvancedWeaponUpgrade>();
+        if (advancedWeapon != null && advancedWeapon.enabled)
         {
-            weapon = GetComponent<AdvancedWeaponUpgrade>();
+            weapon = advancedWeapon;
+            return;
         }
-        else if (GetComponent<WeaponUgrade>() != null)
+
+        // Check if WeaponUpgrade script is active
+        WeaponUgrade weaponUpgrade = GetComponent<WeaponUgrade>();
+        if (weaponUpgrade != null && weaponUpgrade.enabled)
         {
-            weapon = GetComponent<WeaponUgrade>();
+            weapon = weaponUpgrade;
+            return;
         }
-        else if (GetComponent<NormalWeapon>() != null)
+
+        // Check if NormalWeapon script is active
+        NormalWeapon normalWeapon = GetComponent<NormalWeapon>();
+        if (normalWeapon != null && normalWeapon.enabled)
         {
-            weapon = GetComponent<NormalWeapon>();
+            weapon = normalWeapon;
+            return;
         }
     }
 }
