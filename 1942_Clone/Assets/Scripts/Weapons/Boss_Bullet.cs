@@ -6,13 +6,14 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class Boss_Bullet : Bullet
 {
     private Transform player;
+    public Player player1;
+    public Player2 player2;
     // LayerMask to define which layers the bullet should ignore
     public LayerMask ignoreLayers;
 
     // Start is called before the first frame update
     protected void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
 
         targeting();
@@ -29,6 +30,8 @@ public class Boss_Bullet : Bullet
         // Check if the hit object is of type BasicEnemy or BossEnemy
         if (hitInfo.CompareTag("Player"))
         {
+            
+            
 
             // Print name of the object it hits
             Debug.Log(hitInfo.name);
@@ -39,12 +42,18 @@ public class Boss_Bullet : Bullet
             // Impact Effect
             Instantiate(impactEffect, transform.position, transform.rotation);
 
-            // ScoreBehaviour.AddScore(); future implementation
 
-     
-            return; // Ignore the collision and do not execute the rest of the code
+            //Bullets Damage.
+            if (hitInfo.gameObject.GetComponent<Player>() != null)
+            {
+                hitInfo.gameObject.GetComponent<Player>().TakeDamage(2f);
+            }
+
+            else if (hitInfo.gameObject.GetComponent<Player2>() != null)
+            {
+                hitInfo.gameObject.GetComponent<Player2>().TakeDamage(2f);
+            }
         }
-
         else { return; }
 
     }
@@ -71,4 +80,5 @@ public class Boss_Bullet : Bullet
             Debug.LogError("Player objects not found in the scene!");
         }
     }
+ 
 }
