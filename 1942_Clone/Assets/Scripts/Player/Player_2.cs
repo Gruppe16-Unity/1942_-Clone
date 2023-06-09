@@ -124,8 +124,11 @@ public class Player2 : MonoBehaviour, DamageAble
     {
         //kall destroyed animasion
         //Destroy(gameObject);
-        TakeDamage(1f);
-        Debug.Log("CollisionEnter");
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(5f);
+            Debug.Log("CollisionEnter");
+        }
 
         //Removes 
         //Object.Destroy(gameObject);
@@ -140,7 +143,7 @@ public class Player2 : MonoBehaviour, DamageAble
         currentHealth -= damage;
         Debug.Log("Health: " + currentHealth);
         healthbar.SetHealth(currentHealth);
-        if (currentHealth == 0f)
+        if (currentHealth <= 0f)
         {
             Die();
         }

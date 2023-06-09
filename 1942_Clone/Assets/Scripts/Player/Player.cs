@@ -106,7 +106,7 @@ public class Player : MonoBehaviour, DamageAble
         }
         if (Input.GetKey(KeyCode.S))
         {
-            TakeDamage(1f);
+            //TakeDamage(1f);
             y = -1f;
             //Debug.Log("s pressed");
         }
@@ -124,7 +124,12 @@ public class Player : MonoBehaviour, DamageAble
     {
         //kall destroyed animasion
         //Destroy(gameObject);
-        Debug.Log("CollisionEnter");
+        //Debug.Log("CollisionEnter");
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(5f);
+            Debug.Log("CollisionEnter");
+        }
 
         //Removes 
         //Object.Destroy(gameObject);
@@ -139,7 +144,7 @@ public class Player : MonoBehaviour, DamageAble
         currentHealth -= damage;
         Debug.Log("Health: " + currentHealth);
         healthbar.SetHealth(currentHealth);
-        if (currentHealth == 0f)
+        if (currentHealth <= 0f)
         {
             Die();
         }
