@@ -7,7 +7,7 @@ public class Boss_Bullet : Bullet
 {
     private Transform player;
     public Player player1;
-    public Player2 player2;
+    public Player_2 player2;
     // LayerMask to define which layers the bullet should ignore
     public LayerMask ignoreLayers;
 
@@ -49,9 +49,9 @@ public class Boss_Bullet : Bullet
                 hitInfo.gameObject.GetComponent<Player>().TakeDamage(2f);
             }
 
-            else if (hitInfo.gameObject.GetComponent<Player2>() != null)
+            else if (hitInfo.gameObject.GetComponent<Player_2>() != null)
             {
-                hitInfo.gameObject.GetComponent<Player2>().TakeDamage(2f);
+                hitInfo.gameObject.GetComponent<Player_2>().TakeDamage(2f);
             }
         }
         else { return; }

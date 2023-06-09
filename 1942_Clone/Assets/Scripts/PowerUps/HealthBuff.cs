@@ -13,6 +13,7 @@ public class HealthBuff : PowerUpEffect
         if (player != null)
         {
             player.currentHealth += amount;
+
         }
     }
 }
